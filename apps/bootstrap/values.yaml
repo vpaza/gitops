@@ -2,5 +2,5 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/vpaza/gitops-new
+    repoURL: https://github.com/vpaza/gitops
     targetRevision: HEAD

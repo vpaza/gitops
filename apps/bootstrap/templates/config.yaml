@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     path: apps/configs
-    repoURL: https://github.com/vpaza/gitops-new
+    repoURL: https://github.com/vpaza/gitops
     targetRevision: HEAD
   syncPolicy:
     automated:
