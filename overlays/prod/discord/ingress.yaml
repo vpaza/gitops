@@ -28,7 +28,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       rewrite ^/(.*)$ https://discord.zanartcc.org/$1 permanent;
-  name: discord-ingress
+  name: discord-ingress-redirect
   labels:
     app: discord
 spec:
