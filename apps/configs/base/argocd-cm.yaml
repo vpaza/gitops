@@ -10,7 +10,14 @@ data:
           clientSecret: $dex.github.clientSecret
           orgs:
           - name: adh-partnership
-  url: https://argo.adhp.dev
+  resource.exclusions: |
+    - apiGroups:
+        - cilium.io
+      kinds:
+        - 'CiliumIdentity'
+      clusters:
+        - "*"
+  url: https://argo.ca.adhp.dev
 kind: ConfigMap
 metadata:
   labels:
