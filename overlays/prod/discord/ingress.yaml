@@ -7,16 +7,6 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: discord.vzanartcc.net
-    http:
-      paths:
-      - backend:
-          service:
-            name: discord-service
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
   - host: discord.zanartcc.org
     http:
       paths:
@@ -29,6 +19,32 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - discord.vzanartcc.net
+    - discord.zanartcc.org
+    secretName: discord-vzanartcc-net-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/(.*)$ https://discord.zanartcc.org/$1 permanent;
+  name: discord-ingress
+  labels:
+    app: discord
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: discord.zanartcc.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: discord-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
     - discord.zanartcc.org
     secretName: discord-vzanartcc-net-tls
