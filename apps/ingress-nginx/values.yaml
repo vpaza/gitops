@@ -8,8 +8,7 @@ ingress-nginx:
       use-forwarded-headers: "true"
       use-proxy-protocol: "true"
     service:
-      service:
-        type: LoadBalancer
-        annotations:
-          service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-          service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
+      type: LoadBalancer
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+        service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
