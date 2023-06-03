@@ -19,12 +19,12 @@ spec:
     aws_key_id:
       valueFrom:
         secretKeyRef:
-          name: logging-s3
+          name: secret-logging-s3
           key: awsAccessKeyId
     aws_sec_key:
       valueFrom:
         secretKeyRef:
-          name: logging-s3
+          name: secret-logging-s3
           key: awsSecretAccessKey
     s3_bucket: kzdv-backups
     s3_endpoint: https://sfo3.digitaloceanspaces.com
@@ -90,12 +90,12 @@ spec:
             - name: AWS_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: logging-s3
+                  name: secret-logging-s3
                   key: awsAccessKeyId
             - name: AWS_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: logging-s3
+                  name: secret-logging-s3
                   key: awsSecretAccessKey
             - name: AWS_ENDPOINT
               value: sfo3.digitaloceanspaces.com
