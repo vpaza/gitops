@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: www.zanartcc.org
+  - host: zanartcc.org
     http:
       paths:
       - backend:
@@ -17,7 +17,24 @@ spec:
               number: 80
         path: /
         pathType: Prefix
-  - host: zanartcc.org
+  tls:
+  - hosts:
+    - zanartcc.org
+    secretName: www-vzanartcc-net-tls
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/(.*)$ https://zanartcc.org/$1 permanent;
+  name: www-ingress-old
+  labels:
+    app: api
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: www.zanartcc.org
     http:
       paths:
       - backend:
@@ -49,8 +66,7 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
+    - www.zanartcc.org
     - www.vzanartcc.net
     - vzanartcc.net
-    - www.zanartcc.org
-    - zanartcc.org
     secretName: www-vzanartcc-net-tls
