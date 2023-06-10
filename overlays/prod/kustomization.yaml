@@ -10,6 +10,11 @@ resources:
 - discord/deployment.yaml
 - discord/service.yaml
 - discord/ingress.yaml
+- ids/certificate.yaml
+- ids/deployment.yaml
+- ids/ingress.yaml
+- ids/poddistruptionpolicy.yaml
+- ids/service.yaml
 - logging/logging.yaml
 - logging/flow.yaml
 - logging/output.yaml

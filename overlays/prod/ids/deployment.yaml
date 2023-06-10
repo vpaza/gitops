@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ids
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ids
+  template:
+    metadata:
+      labels:
+        app: ids
+    spec:
+      initContainers:
+      - name: config
+        image: adhp/zan-ids:main-776d856
+        imagePullPolicy: Always
+        env:
+        - name: ENV_PATH
+          value: /app
+        - name: CONFIG
+          value: /etc/zdv-api/config.yaml
+        envFrom:
+        - secretRef:
+            name: secret-database
+            optional: false
+        - secretRef:
+            name: secret-ids-oauth
+            optional: false
+        - secretRef:
+            name: secret-session
+            optional: false
+        command:
+        - /bin/bash
+        - -c
+        - |
+          cat <<EOF > /etc/zan-ids/config.yaml
+          database:
+            host: ${DB_HOST}
+            port: ${DB_PORT}
+            user: ${DB_USER}
+            password: ${DB_PASSWORD}
+            database: zanids
+          facility:
+            identifier: ZAN
+            name: Anchorage ARTCC
+          oauth:
+            base_url: https://auth.vzanartcc.net
+            client_id: ${OAUTH_CLIENT_ID}
+            client_secret: ${OAUTH_CLIENT_SECRET}
+            my_base_url: https://ids.zanartcc.org
+            endpoint_authorize: /oauth/authorize
+            endpoint_token: /oauth/token
+            endpoint_user_info: /v1/info
+          server:
+            port: 3000
+            mode: h2c
+          session:
+            name: zan-ids
+            secret: ${SESSION_KEY}
+            domain: .zanartcc.org
+            path: /
+            max_age: 86400
+          EOF
+        volumeMounts:
+        - name: config
+          mountPath: /etc/zan-ids
+      containers:
+      - name: api
+        image: adhp/zan-ids:main-776d856
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ready
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        command: ["/app/api"]
+        args:
+          - server
+          - --config
+          - /etc/zan-ids/config.yaml
+        volumeMounts:
+        - name: config
+          mountPath: /etc/zan-api
+        resources:
+          requests:
+            cpu: 20m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 512Mi
+      volumes:
+      - name: config
+        emptyDir: {}
