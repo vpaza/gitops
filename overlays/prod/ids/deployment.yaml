@@ -63,6 +63,7 @@ spec:
             path: /
             max_age: 86400
           EOF
+          cat /etc/zan-ids/config.yaml
         volumeMounts:
         - name: config
           mountPath: /etc/zan-ids
