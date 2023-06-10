@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: auth
+            name: ids
             port:
               number: 3000
         path: /
