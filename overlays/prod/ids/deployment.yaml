@@ -101,7 +101,7 @@ spec:
           - /etc/zan-ids/config.yaml
         volumeMounts:
         - name: config
-          mountPath: /etc/zan-api
+          mountPath: /etc/zan-ids
         resources:
           requests:
             cpu: 20m
