@@ -26,8 +26,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      rewrite ^/(.*)$ https://zanartcc.org/$1 permanent;
+    nginx.ingress.kubernetes.io/rewrite-target: https://zanartcc.org/$2
   name: www-ingress-old
   labels:
     app: api
