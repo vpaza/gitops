@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: auth.vzanartcc.net
+  - host: auth.zanartcc.org
     http:
       paths:
       - backend:
@@ -16,6 +16,23 @@ spec:
               number: 3000
         path: /
         pathType: Prefix
+  tls:
+  - hosts:
+    - auth.zanartcc.org
+    secretName: tls-auth-zanartcc-org
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/server-snippet: |
+      return 301 https://auth.vzanartcc.net$request_uri;
+  name: auth-old
+  namespace: zan
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: auth.vzanartcc.net
   tls:
   - hosts:
     - auth.vzanartcc.net

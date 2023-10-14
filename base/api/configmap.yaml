@@ -106,7 +106,7 @@ data:
       region: {{.STORAGE_REGION | default "us-east-1"}}
       endpoint: {{.STORAGE_ENDPOINT | default ""}}
     oauth:
-      base_URL: "https://auth.vzanartcc.net"
+      base_URL: "https://auth.zanartcc.org"
       endpoints:
         token: "/oauth/token"
         user: "/v1/info"

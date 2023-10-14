@@ -26,7 +26,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: https://zanartcc.org/$2
+    nginx.ingress.kubernetes.io/server-snippet: |
+      return 301 https://zanartcc.org$request_uri;
   name: www-ingress-old
   labels:
     app: api
@@ -34,35 +35,8 @@ spec:
   ingressClassName: nginx
   rules:
   - host: www.zanartcc.org
-    http:
-      paths:
-      - backend:
-          service:
-            name: www-service
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
   - host: www.vzanartcc.net
-    http:
-      paths:
-      - backend:
-          service:
-            name: www-service
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
   - host: vzanartcc.net
-    http:
-      paths:
-      - backend:
-          service:
-            name: www-service
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
   tls:
   - hosts:
     - www.zanartcc.org
