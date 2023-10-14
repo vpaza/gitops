@@ -46,7 +46,7 @@ spec:
             identifier: ZAN
             name: Anchorage ARTCC
           oauth:
-            base_url: https://auth.vzanartcc.net
+            base_url: https://auth.zanartcc.org
             client_id: ${OAUTH_CLIENT_ID}
             client_secret: ${OAUTH_CLIENT_SECRET}
             my_base_url: https://ids.zanartcc.org
