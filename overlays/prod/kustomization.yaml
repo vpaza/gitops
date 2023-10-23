@@ -29,7 +29,7 @@ images:
   newTag: zan-v1.7.1696687928.40-5f05b4b
 - name: adhp/zan-ids
   newName: adhp/zan-ids
-  newTag: main-2e62595
+  newTag: main-7570632
 - name: denartcc/api
   newName: adhp/api
   newTag: main-0547f47
