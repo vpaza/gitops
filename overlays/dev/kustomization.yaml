@@ -13,6 +13,7 @@ images:
   newTag: dev-e50c9e2
 patchesStrategicMerge:
 - api/merge/certificate.yaml
+- api/merge/deployment.yaml
 - api/merge/ingress.yaml
 - frontend/merge/certificate.yaml
 - frontend/merge/ingress.yaml
