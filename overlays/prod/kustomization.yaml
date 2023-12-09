@@ -32,7 +32,7 @@ images:
   newTag: main-fef557b
 - name: denartcc/api
   newName: adhp/api
-  newTag: main-e8d24df
+  newTag: main-d03fea6
 - name: vzanartcc/auth
   newName: adhp/auth
   newTag: df0fe4b
