@@ -26,7 +26,7 @@ resources:
 images:
 - name: adhp/zan-frontend
   newName: adhp/frontend
-  newTag: zan-v1.8.1702268100.52-08bded5
+  newTag: zan-v1.8.1702605669.53-67a8947
 - name: adhp/zan-ids
   newName: adhp/zan-ids
   newTag: main-fef557b
