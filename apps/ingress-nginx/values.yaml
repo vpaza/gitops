@@ -12,3 +12,4 @@ ingress-nginx:
       annotations:
         service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
         service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
+        service.beta.kubernetes.io/do-loadbalancer-hostname: "cluster.lb.addysnip.link"
