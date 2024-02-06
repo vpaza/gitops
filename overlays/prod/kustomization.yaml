@@ -29,10 +29,10 @@ resources:
 images:
 - name: adhp/ids-backend
   newName: docker.io/adhp/ids-backend
-  newTag: zan-main-66a7f0d
+  newTag: zan-main-e0e54d9
 - name: adhp/ids-frontend
   newName: docker.io/adhp/ids-frontend
-  newTag: zan-main-66a7f0d
+  newTag: zan-main-e0e54d9
 - name: adhp/zan-frontend
   newName: adhp/frontend
   newTag: zan-v1.8.1702605669.53-67a8947
