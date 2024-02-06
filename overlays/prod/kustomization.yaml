@@ -11,10 +11,13 @@ resources:
 - discord/service.yaml
 - discord/ingress.yaml
 - ids/certificate.yaml
-- ids/deployment.yaml
+- ids/configmap.yaml
+- ids/deployment-backend.yaml
+- ids/deployment-frontend.yaml
 - ids/ingress.yaml
 - ids/poddistruptionpolicy.yaml
-- ids/service.yaml
+- ids/service-backend.yaml
+- ids/service-frontend.yaml
 - logging/logging.yaml
 - logging/flow.yaml
 - logging/output.yaml
@@ -27,9 +30,6 @@ images:
 - name: adhp/zan-frontend
   newName: adhp/frontend
   newTag: zan-v1.8.1702605669.53-67a8947
-- name: adhp/zan-ids
-  newName: adhp/zan-ids
-  newTag: main-fef557b
 - name: denartcc/api
   newName: adhp/api
   newTag: main-2c79d76
