@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hawton-cloud
+  namespace: zan
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: hawton.cloud
+    http:
+      paths:
+      - backend:
+          service:
+            name: auth
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - hawton.cloud
+    secretName: tls-hawton-cloud

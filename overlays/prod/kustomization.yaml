@@ -26,6 +26,10 @@ resources:
 - auth/poddistruptionpolicy.yaml
 - discord/poddistruptionpolicy.yaml
 - external-secrets/external-secrets.yaml
+- personal/certificate.yaml
+- personal/deployment.yaml
+- personal/ingress.yaml
+- personal/service.yaml
 images:
 - name: adhp/ids-backend
   newName: docker.io/adhp/ids-backend
