@@ -12,9 +12,9 @@ spec:
         spec:
           containers:
           - envFrom:
-            - secretRef:
-                name: secret-database
-                optional: false
+              - secretRef:
+                  name: secret-database
+                  optional: false
             env:
             - name: STATES
               value: "AK"
