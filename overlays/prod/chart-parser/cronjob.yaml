@@ -49,11 +49,11 @@ spec:
                   key: DB_PASSWORD
                   name: secret-database
             - name: DB_DATABASE
-              value: "idsv2"
+              value: "zan"
             - name: STATES
               value: "AK"
             - name: DB_TABLE
-              value: "charts"
+              value: "airport_charts"
             image: adhp/chart-parser:latest
             imagePullPolicy: Always
             name: chart-parser
