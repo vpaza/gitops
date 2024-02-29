@@ -23,42 +23,6 @@ spec:
             name: chart-parser
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
-          - envFrom:
-            - secretRef:
-                name: secret-database
-                optional: false
-            env:
-            - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  key: DB_HOST
-                  name: secret-database
-            - name: DB_PORT
-              valueFrom:
-                secretKeyRef:
-                  key: DB_PORT
-                  name: secret-database
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  key: DB_USER
-                  name: secret-database
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: DB_PASSWORD
-                  name: secret-database
-            - name: DB_DATABASE
-              value: "zan"
-            - name: STATES
-              value: "AK"
-            - name: DB_TABLE
-              value: "airport_charts"
-            image: adhp/chart-parser:latest
-            imagePullPolicy: Always
-            name: chart-parser
-            terminationMessagePath: /dev/termination-log
-            terminationMessagePolicy: File
           dnsPolicy: ClusterFirst
           restartPolicy: OnFailure
           schedulerName: default-scheduler
