@@ -39,7 +39,7 @@ images:
   newTag: zan-main-ed7ff26
 - name: adhp/zan-frontend
   newName: adhp/frontend
-  newTag: zan-v1.9.1722027930.74-e3422e8
+  newTag: zan-v1.9.1722102339.75-3ff4d91
 - name: denartcc/api
   newName: adhp/api
   newTag: main-b2362c9
