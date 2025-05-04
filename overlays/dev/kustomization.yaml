@@ -10,7 +10,7 @@ images:
   newTag: zan-main-115ffb6
 - name: denartcc/api
   newName: adhp/api
-  newTag: dev-1045fcd
+  newTag: dev-09156cc
 #- api/merge/deployment.yaml
 patches:
 - path: api/merge/certificate.yaml
