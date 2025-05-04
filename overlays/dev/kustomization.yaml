@@ -12,8 +12,8 @@ images:
   newName: adhp/api
   newTag: dev-1045fcd
 #- api/merge/deployment.yaml
-patchesStrategicMerge:
-- api/merge/certificate.yaml
-- api/merge/ingress.yaml
-- frontend/merge/certificate.yaml
-- frontend/merge/ingress.yaml
+patches:
+- path: api/merge/certificate.yaml
+- path: api/merge/ingress.yaml
+- path: frontend/merge/certificate.yaml
+- path: frontend/merge/ingress.yaml
