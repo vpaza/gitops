@@ -17,29 +17,18 @@ spec:
               number: 80
         path: /
         pathType: Prefix
+  - host: www.zanartcc.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: www-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
   tls:
   - hosts:
     - zanartcc.org
-    secretName: www-vzanartcc-net-tls
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/server-snippet: |
-      return 301 https://zanartcc.org$request_uri;
-  name: www-ingress-old
-  labels:
-    app: api
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: www.zanartcc.org
-  - host: www.vzanartcc.net
-  - host: vzanartcc.net
-  tls:
-  - hosts:
     - www.zanartcc.org
-    - www.vzanartcc.net
-    - vzanartcc.net
     secretName: www-vzanartcc-net-tls

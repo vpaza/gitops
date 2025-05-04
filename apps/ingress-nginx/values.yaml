@@ -7,7 +7,6 @@ ingress-nginx:
       proxy-body-size: 128m
       use-forwarded-headers: "true"
       use-proxy-protocol: "true"
-      annotations-risk-level: "Critical"
     service:
       type: LoadBalancer
       annotations:
