@@ -1,0 +1,89 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: chart-parser
+  namespace: zan
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - envFrom:
+              - secretRef:
+                  name: secret-database
+                  optional: false
+            env:
+            - name: STATES
+              value: "AK"
+            image: adhp/chart-parser:latest
+            imagePullPolicy: Always
+            name: chart-parser
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: OnFailure
+          schedulerName: default-scheduler
+          terminationGracePeriodSeconds: 30
+  schedule: 1 9 * * *
+  successfulJobsHistoryLimit: 3
+  suspend: false
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ids-chart-parser
+  namespace: zan
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - envFrom:
+            - secretRef:
+                name: secret-database
+                optional: false
+            env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: DB_HOST
+                  name: secret-database
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: DB_PORT
+                  name: secret-database
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: DB_USER
+                  name: secret-database
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: DB_PASSWORD
+                  name: secret-database
+            - name: DB_DATABASE
+              value: "idsv2"
+            - name: STATES
+              value: "AK"
+            - name: DB_TABLE
+              value: "charts"
+            image: adhp/chart-parser:latest
+            imagePullPolicy: Always
+            name: chart-parser
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: OnFailure
+          schedulerName: default-scheduler
+          terminationGracePeriodSeconds: 30
+  schedule: 30 9 * * *
+  successfulJobsHistoryLimit: 3
+  suspend: false
