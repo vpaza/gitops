@@ -4,7 +4,6 @@ metadata:
   name: www-vzanartcc-net-tls
 spec:
   dnsNames:
-  - www.vzanartcc.net
   - vzanartcc.net
   - www.zanartcc.org
   - zanartcc.org
