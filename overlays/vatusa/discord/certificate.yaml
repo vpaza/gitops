@@ -4,7 +4,6 @@ metadata:
   name: discord-vzanartcc-net-tls
 spec:
   dnsNames:
-  - discord.vzanartcc.net
   - discord.zanartcc.org
   issuerRef:
     kind: ClusterIssuer
