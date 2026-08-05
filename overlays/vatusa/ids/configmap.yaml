@@ -24,6 +24,8 @@ data:
       database_name: idsv2 # database name
       auto_migrate: true # auto migrate database on startup
       CACert: "" # path to CA certificate for TLS connection
+      max_open_conns: 5 # connection pool ceiling; package default is 50
+      max_idle_conns: 2 # idle connections kept open; package default is 10
 
     facility:
       identifier: ZAN # FAA Facility Identifier
